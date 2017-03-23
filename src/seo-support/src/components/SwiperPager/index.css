@@ -1,0 +1,18 @@
+.ej-swiper-pager{
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.ej-swiper-pager .item{
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background-color: rgba(255,255,255,0.8);
+	margin: 0 3px;
+	overflow: hidden;
+}
+.ej-swiper-pager .current{
+	background-color: #38f;
+}

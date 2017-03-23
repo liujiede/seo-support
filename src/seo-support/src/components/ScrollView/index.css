@@ -1,0 +1,22 @@
+.ej-scroll-view{
+	position: relative;
+	overflow-x: hidden;
+	overflow-y: auto;
+	overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch;
+	flex: 1;
+}
+.ej-scroll-view-content{
+	position: relative;
+}
+.ej-scroll-view-h{
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.ej-scroll-view-h-content{
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	min-width: 100%;
+	align-self: flex-start;
+}

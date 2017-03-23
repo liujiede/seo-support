@@ -1,0 +1,27 @@
+.ej-navbar{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 44px;
+	transition: transform .5s cubic-bezier(0, 0.75, 0.75, 1);
+	transform: translateY(0);
+	pointer-events: none;
+}
+.ej-navbar-hide{
+	transform: translateY(-100%);
+}
+.ej-navbar-layer{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	pointer-events: none;
+}
+.ej-navbar-layer *{
+	pointer-events: all;
+}
+.ej-navbar-layer-animate{
+	transition: opacity .5s;
+}

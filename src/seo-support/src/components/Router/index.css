@@ -1,0 +1,24 @@
+.ej-router-layer{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #fff;
+}
+.ej-router-current{
+	transform: translateX(0);
+	box-shadow: 0 0 20px rgba(0,0,0,.3);
+}
+.ej-router-prev{
+	transform: translateX(-50%);
+	box-shadow: 0 0 20px rgba(0,0,0,.3);
+}
+.ej-router-next{
+	transform: translateX(100%);
+	box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+.ej-router-animate{
+	transition: transform .5s cubic-bezier(0, 1, 0.75, 1),
+				box-shadow .5s;
+}

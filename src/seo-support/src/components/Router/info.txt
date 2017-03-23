@@ -1,0 +1,13 @@
+page1 -> page2 -> 返回page1
+
+page1 -> page2 -> page1
+
+page1 -> page2 -> 刷新page2 -> page1
+
+page1 -> page2 -> 外部页面... -> page3
+
+page1 -> page2 -> 外部页面... -> page3 -> page2
+
+page1 -> page2 -> 外部页面... -> page2(timespan一样/不一样)
+
+page1 -> page2 -> 外部页面... -> 返回page2
