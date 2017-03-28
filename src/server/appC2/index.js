@@ -8,8 +8,8 @@ export default class C2 extends Component {
   }
   componentWillMount() {
     var _this = this;
-    fetch('/c2').then(function (data) {
-      _this.setState({ time: data });
+    fetch('https://m.elong.com/hotelwxxcx/getserverdate/').then(function (data) {
+      _this.setState({ time: Object.keys(data)[0] + ":::" + data[Object.keys(data)[0]] });
     });
   }
   render() {

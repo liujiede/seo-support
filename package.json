@@ -30,6 +30,7 @@
     "files-to-es5": "^0.1.4",
     "functionhappy": "^1.0.0",
     "json-loader": "^0.5.4",
+    "node-fetch": "^1.6.3",
     "node-sass": "^3.8.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

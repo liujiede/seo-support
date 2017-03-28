@@ -11,7 +11,7 @@ export default class App extends Component {
   componentWillMount() {
     var _this = this;
     fetch('/666?name=123').then(function (data) {
-      _this.setState({ time: data });
+      _this.setState({ time: Object.keys(data)[0] + ":::" + data[Object.keys(data)[0]] });
     });
   }
   render() {

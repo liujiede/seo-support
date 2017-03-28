@@ -3,7 +3,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './app';
 import template from './template';
-import fetch from '../utils/fetch.js';
+import fetch from '../utils/fetch.js';//将来是 bus.Fetch
 
 const server = express();
 
@@ -17,23 +17,23 @@ function mockRequest(tag) {
   });
 }
 server.get('/666', (req, res) => {
-  res.json(req.url)
+  res.json({ [req.url]: Math.random() })
 });
 server.get('/c1', (req, res) => {
-  res.json(req.url)
+  res.json({ [req.url]: Math.random() })
 });
 server.get('/c2', (req, res) => {
-  res.json(req.url)
+  res.json({ [req.url]: Math.random() })
 });
 server.get('/c2_0', (req, res) => {
-  res.json(req.url)
+  res.json({ [req.url]: Math.random() })
 });
 server.get('/c3', (req, res) => {
-  res.json(req.url)
+  res.json({ [req.url]: Math.random() })
 });
 //监听请求
 server.get('/*.html', (req, res) => {
-  fetch.list = [];//清空即不缓存相同页面请求
+  fetch.list = [];//将来不用，因为all以后会清空
   var domStr = '';
   try {
     domStr = renderToString(<App />);//bus.Main(req.url))
@@ -47,9 +47,7 @@ server.get('/*.html', (req, res) => {
     }));
   };
   if (fetch.list.length) {//判断是否有网络请求
-    Promise.all(fetch.list.map(function (item) {
-      return fetch.get(item);
-    })).then(() => render(renderToString(<App />)));
+    fetch.all().then(() => render(renderToString(<App />)));
   } else {
     render(domStr);
   }

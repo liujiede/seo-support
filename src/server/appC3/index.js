@@ -8,7 +8,7 @@ export default class C3 extends Component {
   componentWillMount() {
     var _this = this;
     fetch('/c3').then(function (data) {
-      _this.setState({ time: data });
+      _this.setState({ time: Object.keys(data)[0] + ":::" + data[Object.keys(data)[0]] });
     });
   }
   render() {

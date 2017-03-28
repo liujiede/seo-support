@@ -8,7 +8,7 @@ export default class C1 extends Component {
   componentWillMount() {
     var _this = this;
     fetch('/c1').then(function (data) {
-    _this.setState({ time: data });
+      _this.setState({ time: Object.keys(data)[0] + ":::" + data[Object.keys(data)[0]] });
     });
   }
   render() {
