@@ -1,6 +1,5 @@
 function Promise(fn) {
     var _this = this;
-
     this.thenList = [];
     this.hasResolve = false;
     this.resolveResult;
@@ -49,11 +48,13 @@ Promise.prototype.reject = function (ex) {
     this.rejectMessage = ex;
     this.hasReject = true;
 };
-
+Promise.prototype.spread = function (fn, onRej) {
+    return this.then((...args) => fn(args), onRej);
+}
 Promise.resolve = function (data) {
-    var promise = new Promise();
-    promise.resolve(data);
-    return promise;
+    return new Promise(function (resolve) {
+        resolve(data)
+    });
 };
 Promise.reject = function (ex) {
     var promise = new Promise();
@@ -81,4 +82,27 @@ Promise.all = function (promises) {
         remaining || resolve(results);
     });
 };
+Promise.race = function (promises) {
+    return new Promise(function (resolve, reject) {
+        promises.forEach(function (obj) {
+            obj.then(data => {
+                resolve(data);
+                return data;
+            }, reason => {
+                reject(reason);
+                return reason;
+            });
+        });
+    })
+}
+Promise.defer = Promise.deferred = function () {
+    var dfd = {}
+    dfd.promise = new Promise(function (resolve, reject) {
+        dfd.resolve = resolve
+        dfd.reject = reject
+    })
+    return dfd
+}
+Promise.done = () => new Promise(() => { });
+
 module.exports = Promise;
