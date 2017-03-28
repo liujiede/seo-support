@@ -55,6 +55,7 @@ Fetch.get = function (item) {
             let rawData = '';
             res.on('data', (chunk) => rawData += chunk);
             res.on('end', () => {
+                console.log(rawData)
                 try {
                     let parsedData = JSON.parse(rawData);
                     resolve(Fetch.cache[item.key] = parsedData);
