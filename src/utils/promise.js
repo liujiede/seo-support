@@ -49,7 +49,7 @@ Promise.prototype.reject = function (ex) {
     this.hasReject = true;
 };
 Promise.prototype.spread = function (fn, onRej) {
-    return this.then((...args) => fn(args), onRej);
+    return this.then((...args) => fn(...args), onRej);
 }
 Promise.resolve = function (data) {
     return new Promise(function (resolve) {

@@ -22,6 +22,9 @@ server.get('/666', (req, res) => {
 server.get('/c1', (req, res) => {
   res.json({ [req.url]: Math.random() })
 });
+server.get('/c11', (req, res) => {
+  res.json({ [req.url]: Math.random() })
+});
 server.get('/c2', (req, res) => {
   res.json({ [req.url]: Math.random() })
 });
@@ -31,27 +34,33 @@ server.get('/c2_0', (req, res) => {
 server.get('/c3', (req, res) => {
   res.json({ [req.url]: Math.random() })
 });
+
 //监听请求
 server.get('/*.html', (req, res) => {
-  fetch.list = [];//将来不用，因为all以后会清空
-  var domStr = '';
-  try {
-    domStr = renderToString(<App />);//bus.Main(req.url))
-  } catch (e) {
-    console.error("render error :: ", JSON.stringify(e));
-  }
-  var render = (domStr) => {
-    res.send(template({
-      body: domStr,
-      title: 'Hello World from the server'
-    }));
-  };
-  if (fetch.list.length) {//判断是否有网络请求
-    fetch.all().then(() => render(renderToString(<App />)));
-  } else {
-    render(domStr);
-  }
+  //var bus = __business__(loader.extend());
+  (function render() {
+    fetch.list = [];
+    var domStr = '';
+    try {
+      domStr = renderToString(<App />);//bus.Main(req.url))
+    } catch (e) {
+      console.error("render error :: ", JSON.stringify(e));
+    }
+    console.log(fetch.list.length);
+    if (fetch.list.length) {//判断是否有网络请求
+      fetch.all().then(render);
+    } else {
+      response(res, domStr);
+    }
+  })();
 });
 
 server.listen(8080);
 console.log('listening');
+
+function response(res, domStr) {
+  res.send(template({
+    body: domStr,
+    title: 'Hello World from the server'
+  }));
+};

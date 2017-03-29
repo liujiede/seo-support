@@ -25,7 +25,6 @@ function Fetch(url, options = {}) {
         }
         if (Fetch.cache[key] !== undefined) {
             resolve(Fetch.cache[key]);
-            delete Fetch.cache[key];
         } else {
             Fetch.list.push(new Promise((resolve, reject) => {
                 fetch(url, {
@@ -59,9 +58,5 @@ function Fetch(url, options = {}) {
 }
 Fetch.list = [];
 Fetch.cache = {};
-Fetch.all = (list = Fetch.list) => Promise.all(list).then(arr => {
-    Fetch.list = [];
-    return arr;
-});
-
+Fetch.all = (list = Fetch.list) => Promise.all(list).then(arr => arr);
 export default Fetch;

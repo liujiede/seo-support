@@ -9,6 +9,9 @@ export default class C1 extends Component {
     var _this = this;
     fetch('/c1').then(function (data) {
       _this.setState({ time: Object.keys(data)[0] + ":::" + data[Object.keys(data)[0]] });
+      fetch('/c11').then(function (data) {
+        _this.setState({ time: Object.keys(data)[0] + ":::" + data[Object.keys(data)[0]]+'6666666' });
+      });
     });
   }
   render() {
